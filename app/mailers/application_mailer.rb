@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@stopbull.com'
+  default from: 'fzuppa@esteticia.com'
   layout 'mailer'
 
   def send_report_bullying_email(email_escuela, porcentaje_de_sentimiento)
