@@ -54,13 +54,13 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => "587",
-      :enable_starttls_auto => true,
-      :domain => ENV["SENDER_DOMAIN"],
-      :authentication => :plain,
-      :user_name => ENV["SENDER_EMAIL"],
-      :password => ENV["SENDER_PASSWORD"]
+    :address => "email-smtp.us-east-1.amazonaws.com",
+    :port => "587",
+    :enable_starttls_auto => true,
+    :domain => ENV["SENDER_DOMAIN"],
+    :authentication => :plain,
+    :user_name => ENV["SENDER_EMAIL"],
+    :password => ENV["SENDER_PASSWORD"]
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
