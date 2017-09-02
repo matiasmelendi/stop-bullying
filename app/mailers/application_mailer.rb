@@ -2,10 +2,10 @@ class ApplicationMailer < ActionMailer::Base
   default from: 'denuncias.stopbullyng@gmail.com'
   layout 'mailer'
 
-  def send_report_bullying_email(email_escuela, porcentaje_de_sentimiento)
-    @email_escuela = email_escuela
-    @porcentaje_de_sentimiento = porcentaje_de_sentimiento
+  def send_report_bullying_email(emails_escuela, informacion)
+    @emails_escuela = emails_escuela
+    @informacion = informacion
 
-    mail(to: @email_escuela, subject: 'Bullying report')
+    mail(to: @emails_escuela, subject: 'Bullying report')
   end
 end

@@ -1,4 +1,6 @@
 <h1>Nuevo caso de bullying</h1>
 <p>
-  Porcentaje de sentimiento: <%= @porcentaje_de_sentimiento %>
+  <% @informacion.each_pair do |info, contenido| %>
+      <strong><%= info %></strong> <p><%= contenido %></p>
+  <% end %>
 </p>
