@@ -1,17 +1,6 @@
-<style>
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th, td {
-    padding: 5px;
-    text-align: left;
-  }
-</style>
-
 <h1>Nuevo caso de bullying</h1>
 <div>
-  <%= image_tag('header.svg') %>
+  <%= image_tag('header') %>
   <p>
     Se denunció un episodio de bullying en el día de la fecha con las siguientes características:
   </p>
@@ -30,7 +19,7 @@
     </tr>
     <tr>
       <th><strong>Tipo de Bullying</strong></th>
-      <td><%= @informacion[:tipo] %></td>
+      <td><%= @informacion[:tipo_bullying] %></td>
     </tr>
     <tr>
       <th><strong>Descripción</strong></th>
