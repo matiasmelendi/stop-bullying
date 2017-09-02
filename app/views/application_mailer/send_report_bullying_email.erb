@@ -1,6 +1,51 @@
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+</style>
+
 <h1>Nuevo caso de bullying</h1>
-<p>
-  <% @informacion.each_pair do |info, contenido| %>
-      <strong><%= info %></strong> <p><%= contenido %></p>
-  <% end %>
-</p>
+<div>
+  <%= image_tag('header.svg') %>
+  <p>
+    Se denunció un episodio de bullying en el día de la fecha con las siguientes características:
+  </p>
+  <table style="width:100%">
+    <tr>
+      <th><strong>Curso</strong></th>
+      <td><%= @informacion[:curso] %></td>
+    </tr>
+    <tr>
+      <th><strong>Quién</strong></th>
+      <td><%= @informacion[:quien] %></td>
+    </tr>
+    <tr>
+      <th><strong>Sentimiento</strong></th>
+      <td><%= @informacion[:sentimiento] %></td>
+    </tr>
+    <tr>
+      <th><strong>Tipo de Bullying</strong></th>
+      <td><%= @informacion[:tipo] %></td>
+    </tr>
+    <tr>
+      <th><strong>Descripción</strong></th>
+      <td><%= @informacion[:descripcion] %></td>
+    </tr>
+  </table>
+  <div>
+    <p>
+      Esperamos que con esta información se pueda brindar la ayuda necesaria.
+    </p>
+    <p>
+      Gracias.
+    </p>
+    <p>
+      Equipo de StopBull.
+    </p>
+  </div>
+</div>
