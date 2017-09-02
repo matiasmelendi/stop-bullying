@@ -54,7 +54,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.smtp_settings = {
-    :address => "email-smtp.us-east-1.amazonaws.com",
+    :address => "smtp.gmail.com",
     :port => "587",
     :enable_starttls_auto => true,
     :domain => ENV["SENDER_DOMAIN"],
