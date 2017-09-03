@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700"
+	      rel="stylesheet">
+	<link rel="stylesheet"
+	      href="css/styles.css">
+	<title>Stopbull</title>
+	<script src="javascript/sweetalert.min.js"></script>
+	<link rel="stylesheet"
+	      type="text/css"
+	      href="css/sweetalert.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<main id="container">
+		<header>
+			<img src="img/stopbull2.svg"
+			     class="imagen"
+			     alt="">
+			<h1>Enfrenta al bullying sin miedo</h1>
+			<p>Esta web permite enviar mensajes anónimos a los directivos de tu escuela.</p>
+		</header>
+
+		<div class="container">
+
+			<form id="form"
+			      method="post"
+			      action="/api/report_bullying">
+				<div class="colegio">
+					<label class="typo"> Selecciona tu colegio </label>
+					<select class="select"
+					        name="id_escuela"
+					        required>
+				<option selected> --Seleccionar-- </option>
+				<option value="1"> Beataimelda </option>
+			</select>
+
+				</div>
+
+				<div class="colegio">
+					<label class="typo"> De qué curso sos? </label>
+					<select class="select"
+					        name="curso"
+					        required>
+					<option selected> --Seleccionar-- </option>
+					<option value="1soc"> Primero Sociales </option>
+					<option value="1eco"> Primero Economía </option>
+					<option value="2soc"> Segundo Sociales </option>
+					<option value="2eco"> Segundo Economía </option>
+					<option value="3soc"> Tercero Sociales </option>
+					<option value="3eco"> Tercero Economía </option>
+					<option value="4soc"> Cuarto Sociales </option>
+					<option value="4eco"> Cuarto Economía </option>
+					<option value="5soc"> Quinto Sociales </option>
+					<option value="5eco"> Quinto Economía </option>
+				</select>
+				</div>
+
+				<div class="colegio">
+					<label class="typo"> A quién le pasó? </label>
+					<div id="quien">
+						<input type="radio"
+						       name="quien"
+						       value="yo">
+						<label class="typo"> A mí </label>
+						<input type="radio"
+						       name="quien"
+						       value="otro">
+						<label class="typo"> A otro </label>
+					</div>
+				</div>
+
+				<div class="colegio">
+					<label class="typo"> Cómo te sentís? </label>
+
+					<div class="sent">
+						<input type="radio"
+						       name="sentimiento"
+						       value="enojado">
+						<label class="typo">Enojado</label>
+						<img class="icono"
+						     src="img/angry.svg">
+					</div>
+
+
+					<div class="sent">
+						<input type="radio"
+						       name="sentimiento"
+						       value="triste">
+						<label class="typo">Triste</label>
+						<img class="icono"
+						     src="img/sad.svg">
+					</div>
+
+
+					<div class="sent">
+						<input type="radio"
+						       name="sentimiento"
+						       value="confundido">
+						<label class="typo">Confundido</label>
+						<img class="icono"
+						     src="img/confused.svg">
+					</div>
+
+
+					<div class="sent">
+						<input type="radio"
+						       name="sentimiento"
+						       value="asustado">
+						<label class="typo">Asustado</label>
+						<img class="icono"
+						     src="img/shocked.svg">
+					</div>
+
+
+					<div class="sent">
+						<input type="radio"
+						       name="sentimiento"
+						       value="neutral">
+						<label class="typo">Neutral</label>
+						<img class="icono"
+						     src="img/neutral.svg">
+					</div>
+				</div>
+
+				<div class="colegio">
+					<label class="typo"> Qué tipo de bullying? </label>
+					<div id="bully">
+						<input type="checkbox"
+						       name="tipo_bullying[]"
+						       value="verbal">
+						<label class="typo">Verbal</label>
+						<input type="checkbox"
+						       name="tipo_bullying[]"
+						       value="fisico">
+						<label class="typo">Físico</label>
+						<input type="checkbox"
+						       name="tipo_bullying[]"
+						       value="psico">
+						<label class="typo">Psicológico</label>
+						<input type="checkbox"
+						       name="tipo_bullying[]"
+						       value="cyber">
+						<label class="typo">Cyber bullying</label>
+					</div>
+				</div>
+
+				<div class="colegio">
+					<label class="typo">Contanos que pasó:</label>
+					<textarea name="descripcion"
+					          placeholder="Escribi tu comentario"></textarea>
+				</div>
+
+				<div id="btn">
+					<input type="submit"
+					       value="Enviar" />
+				</div>
+			</form>
+		</div>
+	</main>
+	<script>
+		$("form").submit(function (event) {
+			event.preventDefault(); //prevent default action 
+			var postUrl = $(this).attr("action"); //get form action url
+			var requestMethod = $(this).attr("method"); //get form GET/POST method
+
+            var tiposDeBullying = [];
+            $('input[name="tipo_bullying[]"]:checked').each(function() {
+                tiposDeBullying.push(this.value);
+            });
+
+            $(this).tipo_bullying = tiposDeBullying.join(', ');
+            var formData = $(this).serialize();
+
+			$.ajax({
+				url: postUrl,
+				type: requestMethod,
+				data: formData
+			}).done(function (_) { //
+				swal("Gracias", "Recibimos tu mensaje y vamos a hacer algo al respecto.");
+				$('#form')[0].reset();
+			});
+		});
+	</script>
+</body>
+
+</html>

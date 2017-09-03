@@ -19,7 +19,10 @@
     </tr>
     <tr>
       <th><strong>Tipo de Bullying</strong></th>
-      <td><%= @informacion[:tipo_bullying] %></td>
+      <!--Para soportar la compatibilidad con la app mobile, en un futuro deberíamos recibir siempre un array -->
+      <td>
+        <%= @informacion[:tipo_bullying].is_a?(Array) ? @informacion[:tipo_bullying].join(', ') : @informacion[:tipo_bullying] %>
+      </td>
     </tr>
     <tr>
       <th><strong>Descripción</strong></th>

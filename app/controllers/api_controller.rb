@@ -1,5 +1,5 @@
 class ApiController < ActionController::API
-  before_filter :set_cors_headers
+  before_action :set_cors_headers
 
   def report_bullying
     ApplicationMailer.send_report_bullying_email(receivers, report_content).deliver_now
@@ -10,11 +10,11 @@ class ApiController < ActionController::API
   private
 
   def receivers
-    ENV["EMAIL_ESCUELA"].split(',')
+    ENV["EMAIL_ESCUELA"]&.split(',')
   end
 
   def report_content
-    params.permit(:curso, :quien, :sentimiento, :tipo_bullying, :descripcion)
+    params.permit(:curso, :quien, :sentimiento, :descripcion, tipo_bullying: [])
   end
 
   def set_cors_headers
